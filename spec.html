@@ -14,8 +14,6 @@
 <body>
 
   
-  <script src=".grunt/grunt-contrib-jasmine/es5-shim.js"></script>
-  
   <script src=".grunt/grunt-contrib-jasmine/jasmine.js"></script>
   
   <script src=".grunt/grunt-contrib-jasmine/jasmine-html.js"></script>
@@ -28,6 +26,10 @@
   
   <script src="node_modules/jasmine-jquery/lib/jasmine-jquery.js"></script>
   
+  <script src="node_modules/es6-promise/dist/es6-promise.auto.js"></script>
+  
+  <script src="node_modules/custom-event-polyfill/polyfill.js"></script>
+  
   <script src="src/spec/helpers/helpers.js"></script>
   
   <script src="src/js/data.js"></script>
@@ -35,6 +37,8 @@
   <script src="build/js/intlTelInput.min.js"></script>
   
   <script src="build/js/utils.js"></script>
+  
+  <script src="src/spec/tests/core/closecountrydropdownEvent.js"></script>
   
   <script src="src/spec/tests/core/countrychangeEvent.js"></script>
   
@@ -66,11 +70,15 @@
   
   <script src="src/spec/tests/methods/setNumber.js"></script>
   
+  <script src="src/spec/tests/methods/setPlaceholderNumberType.js"></script>
+  
   <script src="src/spec/tests/options/allowDropdown.js"></script>
   
   <script src="src/spec/tests/options/autoHideDialCode.js"></script>
   
   <script src="src/spec/tests/options/autoPlaceholder.js"></script>
+  
+  <script src="src/spec/tests/options/customContainer.js"></script>
   
   <script src="src/spec/tests/options/customPlaceholder.js"></script>
   
@@ -78,7 +86,7 @@
   
   <script src="src/spec/tests/options/excludeCountries.js"></script>
   
-  <script src="src/spec/tests/options/formatOnInit.js"></script>
+  <script src="src/spec/tests/options/formatOnDisplay.js"></script>
   
   <script src="src/spec/tests/options/geoIpLookup.js"></script>
   
@@ -86,15 +94,17 @@
   
   <script src="src/spec/tests/options/nationalMode.js"></script>
   
-  <script src="src/spec/tests/options/numberType.js"></script>
-  
   <script src="src/spec/tests/options/onlyCountries.js"></script>
+  
+  <script src="src/spec/tests/options/placeholderNumberType.js"></script>
   
   <script src="src/spec/tests/options/preferredCountries.js"></script>
   
   <script src="src/spec/tests/options/separateDialCode.js"></script>
   
   <script src="src/spec/tests/options/utilsScript.js"></script>
+  
+  <script src="src/spec/tests/static/defaults.js"></script>
   
   <script src="src/spec/tests/static/getCountryData.js"></script>
   

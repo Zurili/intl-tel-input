@@ -5,7 +5,8 @@ module.exports = function(grunt) {
         ' * International Telephone Input v<%= package.version %>\n' +
         ' * <%= package.repository.url %>\n' +
         ' * Licensed under the MIT license\n' +
-        ' */\n'
+        ' */\n',
+      screwIE8: false
     },
     dev: {
       options: {
@@ -15,13 +16,15 @@ module.exports = function(grunt) {
         preserveComments: true
       },
       files: {
-        'build/js/intlTelInput.js': 'tmp/wrapped.js'
+        'build/js/intlTelInput.js': 'tmp/wrapped.js',
+        'build/js/intlTelInput-jquery.js': 'tmp/wrapped-jquery.js',
       }
     },
     prod: {
       files: {
-        'tmp/wrapped.min.js': 'tmp/wrapped.js'
+        'tmp/wrapped.min.js': 'tmp/wrapped.js',
+        'tmp/wrapped-jquery.min.js': 'tmp/wrapped-jquery.js',
       }
-    }
+    },
   };
 };

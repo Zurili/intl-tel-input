@@ -1,37 +1,39 @@
 module.exports = function(grunt) {
   return {
+
+    /***********
+     * PRIVATE METHODS
+     * Ignore _init method, which is a subset of other method names, and is used in different ways
+     * Note: can't do public methods, as they need to be called as is
+     ***********/
     one: {
       options: {
         patterns: [
-
-          /***********
-           * PRIVATE METHODS
-           * (special treatment for the _init method, which is a subset of other method names)
-           ***********/
+          // Note: _a is now reserved for step two
           {
-            match: /_init:/g,
-            replacement: '_a:'
-          }, {
-            match: /_init\(/g,
-            replacement: '_a('
-          }, {
             match: /_processCountryData/g,
             replacement: '_b'
           }, {
             match: /_addCountryCode/g,
             replacement: '_c'
           }, {
-            match: /_filterCountries/g,
-            replacement: '_c2'
-          }, {
             match: /_processAllCountries/g,
             replacement: '_d'
+          }, {
+            match: /_translateCountriesByLocale/g,
+            replacement: '_d0'
+          }, {
+            match: /_countryNameSort/g,
+            replacement: '_d1'
           }, {
             match: /_processCountryCodes/g,
             replacement: '_d2'
           }, {
             match: /_processPreferredCountries/g,
             replacement: '_e'
+          }, {
+            match: /_createEl/g,
+            replacement: '_e2'
           }, {
             match: /_generateMarkup/g,
             replacement: '_f'
@@ -45,14 +47,20 @@ module.exports = function(grunt) {
             match: /_initListeners/g,
             replacement: '_i'
           }, {
-            match: /_initDropdownListeners/g,
+            match: /_initHiddenInputListener/g,
+            replacement: '_i0'
+          }, {
+            match: /_getClosestLabel/g,
             replacement: '_i1'
           }, {
-            match: /_initRequests/g,
+            match: /_initDropdownListeners/g,
             replacement: '_i2'
           }, {
-            match: /_loadAutoCountry/g,
+            match: /_initRequests/g,
             replacement: '_i3'
+          }, {
+            match: /_loadAutoCountry/g,
+            replacement: '_i4'
           }, {
             match: /_initKeyListeners/g,
             replacement: '_j'
@@ -60,17 +68,29 @@ module.exports = function(grunt) {
             match: /_cap/g,
             replacement: '_j2'
           }, {
-            match: /_initFocusListeners/g,
+            match: /_initBlurListeners/g,
             replacement: '_l'
+          }, {
+            match: /_removeEmptyDialCode/g,
+            replacement: '_l2'
           }, {
             match: /_getNumeric/g,
             replacement: '_m'
           }, {
+            match: /_trigger/g,
+            replacement: '_m2'
+          }, {
             match: /_showDropdown/g,
             replacement: '_n'
           }, {
+            match: /_toggleClass/g,
+            replacement: '_n2'
+          }, {
             match: /_setDropdownPosition/g,
             replacement: '_o'
+          }, {
+            match: /_getClosestListItem/g,
+            replacement: '_o2'
           }, {
             match: /_bindDropdownListeners/g,
             replacement: '_p'
@@ -93,7 +113,7 @@ module.exports = function(grunt) {
             match: /_updateFlagFromNumber/g,
             replacement: '_v'
           }, {
-            match: /_isUnknownNanp/g,
+            match: /_isRegionlessNanp/g,
             replacement: '_w'
           }, {
             match: /_highlightListItem/g,
@@ -106,284 +126,163 @@ module.exports = function(grunt) {
             replacement: '_z'
           }, {
             match: /_updatePlaceholder/g,
-            replacement: '_aa'
+            replacement: '_0'
           }, {
             match: /_selectListItem/g,
-            replacement: '_ab'
+            replacement: '_1'
           }, {
             match: /_closeDropdown/g,
-            replacement: '_ac'
+            replacement: '_2'
           }, {
             match: /_scrollTo/g,
-            replacement: '_ad'
+            replacement: '_3'
           }, {
             match: /_updateDialCode/g,
-            replacement: '_ae'
+            replacement: '_4'
           }, {
             match: /_getDialCode/g,
-            replacement: '_af'
+            replacement: '_5'
           }, {
             match: /_getFullNumber/g,
-            replacement: '_ag'
+            replacement: '_6'
           }, {
             match: /_beforeSetNumber/g,
-            replacement: '_ah'
+            replacement: '_7'
+          }, {
+            match: /_triggerCountryChange/g,
+            replacement: '_8'
           }
         ]
       },
       files: {
-        'tmp/one.min.js': 'tmp/wrapped.min.js'
+        'tmp/one.min.js': 'tmp/wrapped.min.js',
+        'tmp/one-jquery.min.js': 'tmp/wrapped-jquery.min.js',
       }
     },
 
 
-
+    /***********
+     * INLINE PRIVATE METHODS
+     ***********/
     two: {
       options: {
         patterns: [
-
-          /***********
-           * OPTIONS AND KEYS
-           ***********/
-
-          // keys enum (ommitting A and Z keys, which are already a single char)
           {
-            match: /UP/g,
-            replacement: 'b'
+            match: /_handleMouseoverCountryList/g,
+            replacement: '_a0'
           }, {
-            match: /DOWN/g,
-            replacement: 'c'
+            match: /_handleClickCountryList/g,
+            replacement: '_a1'
           }, {
-            match: /ENTER/g,
-            replacement: 'd'
+            match: /_handleClickOffToClose/g,
+            replacement: '_a2'
           }, {
-            match: /ESC/g,
-            replacement: 'e'
+            match: /_handleKeydownOnDropdown/g,
+            replacement: '_a3'
           }, {
-            match: /PLUS/g,
-            replacement: 'f'
+            match: /_handleWindowScroll/g,
+            replacement: '_a4'
           }, {
-            match: /SPACE/g,
-            replacement: 'j'
+            match: /_handleSubmitOrBlurEvent/g,
+            replacement: '_a8'
           }, {
-            match: /TAB/g,
-            replacement: 'k'
-          },
-
-          // first occurence (hence no /g global flag), when they are defined in the defaults object (no "options." prefix to match)
-          {
-            match: /allowDropdown/,
-            replacement: 'a'
+            match: /_handleLabelClick/g,
+            replacement: '_a9'
           }, {
-            match: /autoHideDialCode/,
-            replacement: 'b'
+            match: /_handleClickSelectedFlag/g,
+            replacement: '_a10'
           }, {
-            match: /autoPlaceholder/,
-            replacement: 'c'
+            match: /_handleFlagsContainerKeydown/g,
+            replacement: '_a11'
           }, {
-            match: /customPlaceholder/,
-            replacement: 'c2'
+            match: /_handleKeyupEvent/g,
+            replacement: '_a12'
           }, {
-            match: /dropdownContainer/,
-            replacement: 'd'
+            match: /_handleClipboardEvent/g,
+            replacement: '_a13'
           }, {
-            match: /excludeCountries/,
-            replacement: 'e'
-          }, {
-            match: /formatOnInit/,
-            replacement: 'f'
-          }, {
-            match: /geoIpLookup/,
-            replacement: 'g'
-          }, {
-            match: /initialCountry/,
-            replacement: 'h'
-          }, {
-            match: /nationalMode/,
-            replacement: 'i'
-          }, {
-            match: /numberType/,
-            replacement: 'j'
-          }, {
-            match: /onlyCountries/,
-            replacement: 'k'
-          }, {
-            match: /preferredCountries/,
-            replacement: 'l'
-          }, {
-            match: /separateDialCode/,
-            replacement: 'm'
-          }, {
-            match: /utilsScript/,
-            replacement: 'n'
-          },
-
-
-          // all other occurrences have the options prefix
-          {
-            match: /options.allowDropdown/g,
-            replacement: 'options.a'
-          }, {
-            match: /options.autoHideDialCode/g,
-            replacement: 'options.b'
-          }, {
-            match: /options.autoPlaceholder/g,
-            replacement: 'options.c'
-          }, {
-            match: /options.customPlaceholder/g,
-            replacement: 'options.c2'
-          }, {
-            match: /options.dropdownContainer/g,
-            replacement: 'options.d'
-          }, {
-            match: /options.excludeCountries/g,
-            replacement: 'options.e'
-          }, {
-            match: /options.formatOnInit/g,
-            replacement: 'options.f'
-          }, {
-            match: /options.geoIpLookup/g,
-            replacement: 'options.g'
-          }, {
-            match: /options.initialCountry/g,
-            replacement: 'options.h'
-          }, {
-            match: /options.nationalMode/g,
-            replacement: 'options.i'
-          }, {
-            match: /options.numberType/g,
-            replacement: 'options.j'
-          }, {
-            match: /options.onlyCountries/g,
-            replacement: 'options.k'
-          }, {
-            match: /options.preferredCountries/g,
-            replacement: 'options.l'
-          }, {
-            match: /options.separateDialCode/g,
-            replacement: 'options.m'
-          }, {
-            match: /options.utilsScript/g,
-            replacement: 'options.n'
+            match: /_handleHiddenInputSubmit/g,
+            replacement: '_a14'
           }
-
         ]
       },
       files: {
-        'tmp/two.min.js': 'tmp/one.min.js'
+        'tmp/two.min.js': 'tmp/one.min.js',
+        'tmp/two-jquery.min.js': 'tmp/one-jquery.min.js',
       }
     },
 
 
-
+    /***********
+     * INSTANCE FIELDS
+     * Note: avoid option names as that will break things!
+     ***********/
     three: {
       options: {
         patterns: [
-
-          /***********
-           * FIELDS ON "this"
-           ***********/
           {
-            match: /.telInput/g,
+            match: /\.telInput/g,
             replacement: '.a'
           }, {
-            match: /.options/g,
+            match: /\.activeItem/g,
             replacement: '.b'
           }, {
-            match: /.isGoodBrowser/g,
+            match: /\.highlightedItem/g,
+            replacement: '.c'
+          }, {
+            match: /\.options/g,
             replacement: '.d'
           }, {
-            match: /.hadInitialPlaceholder/g,
+            match: /\.hadInitialPlaceholder/g,
             replacement: '.e'
-          },
-
-
-          {
-            match: /.isMobile/g,
+          }, {
+            match: /\.isMobile/g,
             replacement: '.g'
           }, {
-            match: /.autoCountryDeferred/g,
+            match: /\.resolveAutoCountryPromise/g,
             replacement: '.h'
           }, {
-            match: /.utilsScriptDeferred/g,
+            match: /\.rejectAutoCountryPromise/g,
             replacement: '.i'
           }, {
-            match: /.defaultCountry/g,
+            match: /\.resolveUtilsScriptPromise/g,
+            replacement: '.i0'
+          }, {
+            match: /\.rejectUtilsScriptPromise/g,
+            replacement: '.i1'
+          }, {
+            match: /\.defaultCountry/g,
             replacement: '.j'
-          },
-
-
-          {
-            match: /.flagsContainer/g,
+          }, {
+            match: /\.flagsContainer/g,
             replacement: '.k'
           }, {
-            match: /.selectedFlagInner/g,
+            match: /\.selectedFlagInner/g,
             replacement: '.l'
           }, {
-            match: /.countryList/g,
+            match: /\.countryList/g,
             replacement: '.m'
           }, {
-            match: /.dropdownHeight/g,
-            replacement: '.n'
-          }, {
-            match: /.countryListItems/g,
-            replacement: '.o'
-          }, {
-            match: /.countries/g,
+            match: /\.countries/g,
             replacement: '.p'
           }, {
-            match: /.countryCodes/g,
+            match: /\.countryCodes/g,
             replacement: '.q'
           }, {
-            match: /.preferredCountries/g,
-            replacement: '.r'
-          }, {
-            match: /.selectedCountryData/g,
+            match: /\.selectedCountryData/g,
             replacement: '.s'
           }, {
-            match: /.selectedDialCode/g,
+            match: /\.selectedDialCode/g,
             replacement: '.t'
-          }
-
-        ]
-      },
-      files: {
-        'tmp/three.min.js': 'tmp/two.min.js'
-      }
-    },
-
-
-
-    four: {
-      options: {
-        patterns: [
-
-          // hack to normalise runtime option names
-          // UPDATE: instead of replacing the runtime option names with a newly created object, we $.extend the existing object so that if we forget to add any new/modified option names in this build file, they will still work! The downside is that this options object will contain both the full key and the minified key, but that really doesn't matter.
-          {
-            match: /this\.b=/g,
-            replacement: 'c&&(a.extend(c,c,{' +
-              'a:c.allowDropdown,' +
-              'b:c.autoHideDialCode,' +
-              'c:c.autoPlaceholder,' +
-              'c2:c.customPlaceholder,' +
-              'd:c.dropdownContainer,' +
-              'e:c.excludeCountries,' +
-              'f:c.formatOnInit,' +
-              'g:c.geoIpLookup,' +
-              'h:c.initialCountry,' +
-              'i:c.nationalMode,' +
-              'j:c.numberType,' +
-              'k:c.onlyCountries,' +
-              'l:c.preferredCountries,' +
-              'm:c.separateDialCode,' +
-              'n:c.utilsScript' +
-              '})),this.b='
+          }, {
+            match: /\.dropdownArrow/g,
+            replacement: '.u'
           }
         ]
       },
       files: {
-        'build/js/intlTelInput.min.js': 'tmp/three.min.js'
+        'build/js/intlTelInput.min.js': 'tmp/two.min.js',
+        'build/js/intlTelInput-jquery.min.js': 'tmp/two-jquery.min.js',
       }
     }
   };

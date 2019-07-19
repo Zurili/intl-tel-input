@@ -1,4 +1,4 @@
-IMPORTANT: please note that the autoFormat feature (format-as-you-type) was removed in v8.0.0 - read more here: https://github.com/jackocnr/intl-tel-input/issues/346. Please do not open any new issues about this topic.
+<!-- IMPORTANT: please read the New Issue Checklist before creating a new issue: https://github.com/jackocnr/intl-tel-input/wiki/New-Issue-Checklist -->
 
 ### Steps to reproduce
 1.  
